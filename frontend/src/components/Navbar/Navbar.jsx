@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 import { useAuth0 } from "@auth0/auth0-react";
-import config from "../config";
+import config from "../../config";
 import axios from "axios";
 
 function Navbar() {
