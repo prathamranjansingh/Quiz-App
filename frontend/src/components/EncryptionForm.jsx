@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { StoreContext } from "../context/StoreContext.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import config from "../config";
 const EncryptionForm = () => {
   const [text, setText] = useState("");
   const [syntaxModal, setSyntaxModal] = useState(false);
@@ -52,7 +52,7 @@ const EncryptionForm = () => {
     try {
       // Step 1: Encrypt Text
       const encryptResponse = await axios.post(
-        "http://localhost:3000/encrypt-text",
+        `${config.apiBaseUrl}/encrypt-text`,
         {
           text,
         }
@@ -96,7 +96,7 @@ const EncryptionForm = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:3000/save-encryptedText",
+        `${config.apiBaseUrl}/save-encryptedText`,
         finalData
       );
 

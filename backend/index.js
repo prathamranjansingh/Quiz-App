@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { connectDB } = require("./db/db");
-
+require("dotenv").config();
 const encryptionRoutes = require("./routes/encryptionRoutes");
 const decryptionRoutes = require("./routes/decryptionRoutes");
 const generatekeyRoutes = require("./routes/generatekeyRoutes.js");
@@ -11,7 +11,7 @@ const quizRoutes = require("./routes/quizRoutes.js");
 const quizSubmissionRouter = require("./routes/quizSubmitRoutes.js");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(express.json());

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { StoreContext } from "../context/StoreContext.jsx";
+import config from "../config";
 
 const DecryptionForm = () => {
   const { isDarkMode } = useContext(StoreContext);
@@ -24,7 +25,7 @@ const DecryptionForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/decrypt", {
+      const response = await axios.post(`${config.apiBaseUrl}/decrypt`, {
         encryptedText: formData.encryptedText,
         key: formData.key,
         iv: formData.iv,
@@ -67,7 +68,7 @@ const DecryptionForm = () => {
 
   const handleGenerateQuizCode = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/generate-quiz", {
+      const response = await axios.post(`${config.apiBaseUrl}/generate-quiz`, {
         decryptedText: formData.decryptedText,
       });
       console.log(response.data);

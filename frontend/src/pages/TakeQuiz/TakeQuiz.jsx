@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import config from "../../config";
 const TakeQuiz = () => {
   const [quizCode, setQuizCode] = useState("");
   const [questions, setQuestions] = useState([]);
@@ -12,7 +12,7 @@ const TakeQuiz = () => {
 
   const fetchQuiz = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/takequiz", {
+      const response = await axios.get(`${config.apiBaseUrl}/takequiz`, {
         headers: {
           "Quiz-Code": quizCode,
         },
@@ -55,7 +55,7 @@ const TakeQuiz = () => {
     }));
 
     try {
-      await axios.post("http://localhost:3000/submitquiz", {
+      await axios.post(`${config.apiBaseUrl}/submitquiz`, {
         quizCode, // Ensure quizCode is included in the data
         userName: user.name,
         answers,

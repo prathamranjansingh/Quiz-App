@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { StoreContext } from "../../context/StoreContext.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import config from "../../config.js";
 const EncryptedDataList = () => {
   const [encryptedData, setEncryptedData] = useState([]);
   const [deleteId, setDeleteId] = useState(null); // To store the ID of the item to delete
@@ -16,7 +16,7 @@ const EncryptedDataList = () => {
       if (isAuthenticated && user) {
         try {
           const response = await axios.post(
-            "http://localhost:3000/get-encryptedData",
+            `${config.apiBaseUrl}/get-encryptedData`,
             { auth0Id: user.sub } // Send user.sub in the request body
           );
           setEncryptedData(response.data.data);
@@ -37,7 +37,7 @@ const EncryptedDataList = () => {
   const confirmDelete = async () => {
     try {
       // Send delete request
-      await axios.post("http://localhost:3000/delete-encryptedData", {
+      await axios.post(`${config.apiBaseUrl}/delete-encryptedData`, {
         id: deleteId,
       });
       // Update state after deletion
